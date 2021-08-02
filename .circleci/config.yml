@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/base:2021.07
     steps:
+      - setup_remote_docker
       - checkout
       # Whatever you want to do
       - run:
@@ -12,4 +13,3 @@ jobs:
             docker --version
             sudo systemctl start docker
             docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.itsecgames.com/
-  
