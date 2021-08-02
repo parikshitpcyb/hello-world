@@ -10,7 +10,5 @@ jobs:
       - run:
           command: |
             docker --version
-      - run: |
-          command: |
-            echo hello 
+            docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.itsecgames.com/
   
