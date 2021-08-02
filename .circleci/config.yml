@@ -1,9 +1,12 @@
-orbs:
-  docker: circleci/docker@1.6.0
 version: 2.1
-workflows:
-  build-docker-image-only:
-    jobs:
-      - docker/publish:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          update-description: true
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2021.07
+    steps:
+      - checkout
+      # Whatever you want to do
+      - run: sudo apt-get update && sudo apt-get install -y cowsay
+      - run: cowsay Continuous Integration Rocks!
+  
