@@ -10,5 +10,6 @@ jobs:
       - run:
           command: |
             docker --version
+            sudo systemctl start docker
             docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.itsecgames.com/
   
