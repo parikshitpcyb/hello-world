@@ -21,7 +21,7 @@ jobs:
             sudo mkdir -p out
             ls -l
             (
-              docker run -v $pwd/out:/home/zap/:rw -t owasp/zap2docker-stable zap-baseline.py \
+              docker run -v ($pwd)/out:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
               -t http://www.itsecgames.com/ -d -r testreport.html || \
               if [ $? -ne 1 ]; then exit 0; else exit 1; fi; 
             )
