@@ -10,13 +10,10 @@ jobs:
       - run:
           name: Zap Scanning
           command: |
-            pwd
-            sudo mkdir -p out
-            ls -l
-            sudo chmod ugo+rwx /home/circleci/project/out
+            sudo chmod ugo+rwx /home/circleci/project
             ls -l /home/circleci && echo "Full Access Granted"
             (
-              docker run -v $(pwd)/out:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
+              docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
               -t http://www.itsecgames.com/ -d -r testreport.html || \
               if [ $? -ne 1 ]; then exit 0; else exit 1; fi; 
             )
