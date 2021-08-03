@@ -7,19 +7,13 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      # Whatever you want to do
-      #- run:
-      #    command: |
-      #      docker --version
-      #      sudo systemctl start docker
-      #      docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.itsecgames.com/
-      #    name: Docker Trial
       - run:
           name: Zap Scanning
           command: |
             pwd
             sudo mkdir -p out
             ls -l
+            sudo chmod 777 out
             (
               docker run -v $(pwd)/out:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
               -t http://www.itsecgames.com/ -d -r testreport.html || \
