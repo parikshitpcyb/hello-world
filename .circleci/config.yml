@@ -13,7 +13,7 @@ jobs:
             pwd
             sudo mkdir -p out
             ls -l
-            sudo chmod ugo+rwx /home/circleci/project
+            sudo chmod ugo+rwx /home/circleci/project/out
             ls -l /home/circleci && echo "Full Access Granted"
             (
               docker run -v $(pwd)/out:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
