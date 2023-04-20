@@ -1,17 +1,21 @@
-name: TruffleHog Secrets Scan
-on: [pull_request, push]
+name: TruffleHog
+
+on:
+  push:
+    branches: [ '*' ]
+
 jobs:
-  TruffleHog:
+  trufflehog:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Scan for secrets
+        uses: lyft/trufflehog-action@v1.1
         with:
-          fetch-depth: 0
-      - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
-          extra_args: --debug --only-verified
+          # Options to pass to TruffleHog
+          args: '--exclude_paths node_modules/'
+
+      - name: Print scan results
+        run: cat trufflehog_report.json
