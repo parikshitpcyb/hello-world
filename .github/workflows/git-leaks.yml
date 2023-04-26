@@ -1,5 +1,5 @@
 name: secrets_scan_gitleaks
-on: [pull_request, push]
+on: [pull_request]
 jobs:
   scan:
     name: gitleaks
