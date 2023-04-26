@@ -1,3 +1,5 @@
+#Github Action to perform sonarqube scan on pull request.
+
 name: SonarQubeScanning
 
 on: [pull_request]
